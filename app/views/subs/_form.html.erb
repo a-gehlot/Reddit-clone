@@ -1,0 +1,7 @@
+<% @sub.persisted? ? method = "update" : method = "new" %>
+
+<%= form_for @sub do |form| %>
+    <%= form.text_field :title %>
+    <%= form.text_area :description, size: "60x10" %>
+    <%= form.submit %>
+<% end %>
