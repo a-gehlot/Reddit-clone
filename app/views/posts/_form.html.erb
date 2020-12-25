@@ -1,0 +1,10 @@
+<% @post.persisted? ? method="update" : method="new" %>
+
+<%= form_with model: @post do |form| %>
+    <%= form.text_field :title %>
+    <%= form.text_field :url %>
+    <%= form.text_area :content %>
+    <%= form.collection_check_boxes :sub_ids, Sub.all, :id, :title %>
+    <%= form.submit %>
+<% end %>
+
