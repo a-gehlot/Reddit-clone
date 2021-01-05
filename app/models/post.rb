@@ -6,4 +6,5 @@ class Post < ApplicationRecord
 
     has_many :post_subs, dependent: :destroy, inverse_of: :post
     has_many :subs, through: :post_subs, source: :sub
+    has_many :comments
 end

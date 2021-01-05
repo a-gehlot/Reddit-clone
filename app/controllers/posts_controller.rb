@@ -7,13 +7,12 @@ class PostsController < ApplicationController
 
     def create
         @post = current_user.posts.new(post_params)
-        if @post.save!
+        if @post.save
             flash.now[:notice] = "Post was created"
-            redirect_to @post
+            redirect_to post_path(@post)
         else
-            error
-            # flash.now[:error] = @post.errors.full_messages
-            # render "new"
+            flash.now[:error] = @post.errors.full_messages
+            render 'new'
         end
     end
 
