@@ -1,0 +1,8 @@
+<ul>
+    <li>
+    <%= comment.body %>
+    </li>
+<%= link_to "View comment", comment_path(comment.id) %>
+<br>
+<%= render comment.comments if comment.comments.any? %>
+</ul>

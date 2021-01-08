@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     def create
         @post = Post.find(params[:post_id])
         @comment = @post.comments.create(comment_params)
+        @comment.parent_comment_id = params[:parent_comment_id]
         @comment.author_id = current_user.id
 
         if @comment.save
@@ -11,6 +12,10 @@ class CommentsController < ApplicationController
         else
             raise error
         end
+    end
+
+    def show
+        @comment = Comment.find(params[:id])
     end
 
     def comment_params

@@ -3,4 +3,4 @@
 Add comment
 <%= render "comments/form" %>
 
-<%= @post.comments.each { |comment| comment.body } %>
+<%= render @post.comments %>
