@@ -1,8 +1,15 @@
 <ul>
     <li>
-    <%= comment.body %>
+        Comment: <%= comment.body %>
+    </li>
+    <li>
+        By: <%= comment.author.email %>
+    </li>
+    <li>
+        Created at: <%= comment.created_at %>
     </li>
 <%= link_to "View comment", comment_path(comment.id) %>
-<br>
-<%= render comment.comments if comment.comments.any? %>
+
+<%= render partial: "comments/comment", collection: comment.comments %>
+
 </ul>

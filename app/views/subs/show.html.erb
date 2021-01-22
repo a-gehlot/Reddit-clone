@@ -1,1 +1,16 @@
+<p id="notice">
+    <%= notice %>
+</p>
+
+<%= @posts.each do |post| %>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
+            <p class="card-text"> <%= truncate(post.title, length: 60) %></p>
+            <%= link_to 'Edit', edit_post_path(post), class: 'card-link' %>
+        </div>
+    </div>
+<% end %>
+
 <%= @sub.attributes %>
+

@@ -17,10 +17,12 @@ class SubsController < ApplicationController
     end
 
     def index
+        @subs = Sub.all
     end
 
     def show
         @sub = Sub.find(params[:id])
+        @posts = Post.where(id: @sub.post_ids)
     end
 
     def edit

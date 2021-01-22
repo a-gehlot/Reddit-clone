@@ -1,4 +1,5 @@
 <%= form_with url: comments_path do |form| %>
+    <%= form.hidden_field :author_id, value: current_user.id %>
     <%= form.hidden_field :post_id, value: params[:id] %>
     <%= form.text_field :body %>
     <%= form.submit %>
