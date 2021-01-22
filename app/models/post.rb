@@ -7,4 +7,12 @@ class Post < ApplicationRecord
     has_many :post_subs, dependent: :destroy, inverse_of: :post
     has_many :subs, through: :post_subs, source: :sub
     has_many :comments
+
+    def comments_by_parent_id
+        sorted_comments = Hash.new { |hash, key| hash[key] = [] }
+        Comment.where(post_id: self.id).each do |comment|
+            sorted_comments[comment.parent_comment_id] << comment
+        end
+        sorted_comments
+    end
 end

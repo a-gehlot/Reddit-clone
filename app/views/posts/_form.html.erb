@@ -1,5 +1,6 @@
-<% @post.persisted? ? method="update" : method="new" %>
+<% @post.persisted? ? method="Update" : method="New" %>
 
+<h1><%= method %> Post</h1>
 <%= form_with model: @post do |form| %>
     <%= form.text_field :title %>
     <%= form.text_field :url %>
