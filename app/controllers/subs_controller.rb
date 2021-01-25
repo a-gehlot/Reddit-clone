@@ -23,6 +23,7 @@ class SubsController < ApplicationController
     def show
         @sub = Sub.find(params[:id])
         @posts = Post.where(id: @sub.post_ids)
+        @votes = Vote.where(votable_type: "Post")
     end
 
     def edit
