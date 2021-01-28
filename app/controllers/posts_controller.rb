@@ -40,12 +40,31 @@ class PostsController < ApplicationController
         @all_comments = @post.comments.includes(:author)
     end
 
+    def upvote
+        vote(1)
+    end
+
+    def downvote
+        vote(-1)
+    end
+
     def check_for_author
         current_user && Post.find(params[:id]).author_id == current_user.id
     end
 
+    private
+
 
     def post_params
         params.require(:post).permit(:title, :url, :content, sub_ids: [])
+    end
+
+    def vote(direction)
+        @post = Post.find(params[:id])
+        @user_vote = @post.votes.find_or_create_by(user_id: current_user.id, value: 0)
+
+        @user_vote.update(value: direction)
+
+        redirect_back(fallback_location: subs_path)
     end
 end

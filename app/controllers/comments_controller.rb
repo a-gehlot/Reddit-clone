@@ -17,7 +17,26 @@ class CommentsController < ApplicationController
         @comment = Comment.find(params[:id])
     end
 
+    def upvote
+        vote(1)
+    end
+
+    def downvote
+        vote(-1)
+    end
+
+    private
+
     def comment_params
         params.permit(:body, :post_id, :author_id, :parent_comment_id)
+    end
+
+    def vote(direction)
+        @comment = Comment.find(params[:id])
+        @user_vote = @comment.votes.find_or_create_by(user_id: current_user.id, value: 0)
+
+        @user_vote.update(value: direction)
+
+        redirect_back(fallback_location: subs_path)
     end
 end

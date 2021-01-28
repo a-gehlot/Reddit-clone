@@ -3,9 +3,6 @@
 </p>
 
 <h1><%= @sub.title %></h1>
-<button type="button" class="btn btn-success">
-    <%= button_to 'Upvote' , sub_upvote_index_path(@sub), class: 'btn' %>
-</button>
 
 
 <%= @posts.each do |post| %>
@@ -14,8 +11,8 @@
             <h5 class="card-title"><%= link_to post.title, post_path(post) %></h5>
             <p class="card-text"> <%= truncate(post.title, length: 60) %></p>
             <%= link_to 'Edit', edit_post_path(post), class: 'card-link' %>
-            <button type="button" class="btn btn-success"><%= button_to 'Upvote', post_upvote_index_path(post), class: 'btn' %></button>
-            <button type="button" class="btn btn-danger"><%= button_to 'Downvote', post_downvote_index_path(post), class: 'btn' %></button>
+            <button type="button" class="btn btn-success"><%= button_to 'Upvote', upvote_post_path(post), class: 'btn' %></button>
+            <button type="button" class="btn btn-danger"><%= button_to 'Downvote', downvote_post_path(post), class: 'btn' %></button>
 
             <%= @votes.where(votable_id: post.id).sum(:value) %>
         </div>

@@ -8,6 +8,12 @@
     <li>
         Created at: <%= comment.created_at %>
     </li>
+
+    <button type="button" class="btn btn-success"><%= button_to 'Upvote', upvote_comment_path(comment), class: 'btn' %></button>
+    <button type="button" class="btn btn-danger"><%= button_to 'Downvote', downvote_comment_path(comment), class: 'btn' %></button>
+    
+    <%= comment.votes.sum(:value) %>
+
 <%= link_to "View comment", comment_path(comment.id) %>
 
 <%= render partial: "comments/comment", collection: comment.comments %>
