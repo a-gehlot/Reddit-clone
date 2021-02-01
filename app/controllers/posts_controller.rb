@@ -61,7 +61,7 @@ class PostsController < ApplicationController
 
     def vote(direction)
         @post = Post.find(params[:id])
-        @user_vote = @post.votes.find_or_create_by(user_id: current_user.id, value: 0)
+        @user_vote = @post.votes.find_or_initialize_by(user_id: current_user.id)
 
         @user_vote.update(value: direction)
 
