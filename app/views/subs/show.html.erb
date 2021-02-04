@@ -14,7 +14,7 @@
             <button type="button" class="btn btn-success"><%= button_to 'Upvote', upvote_post_path(post), class: 'btn' %></button>
             <button type="button" class="btn btn-danger"><%= button_to 'Downvote', downvote_post_path(post), class: 'btn' %></button>
 
-            <%= @votes.where(votable_id: post.id).sum(:value) %>
+            <%= post.total %>
         </div>
     </div>
 <% end %>

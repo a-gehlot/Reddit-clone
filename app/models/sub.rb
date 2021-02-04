@@ -3,4 +3,8 @@ class Sub < ApplicationRecord
 
     has_many :post_subs, dependent: :destroy, inverse_of: :sub
     has_many :posts, through: :post_subs, source: :post
+
+    def sorted_posts
+        self.posts.sort_by(&:total).reverse
+    end
 end

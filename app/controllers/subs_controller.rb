@@ -22,7 +22,7 @@ class SubsController < ApplicationController
 
     def show
         @sub = Sub.find(params[:id])
-        @posts = Post.where(id: @sub.post_ids)
+        @posts = @sub.sorted_posts
         @votes = Vote.where(votable_type: "Post")
     end
 

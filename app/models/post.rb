@@ -16,4 +16,8 @@ class Post < ApplicationRecord
         end
         sorted_comments
     end
+
+    def total
+        self.votes.sum(:value)
+    end
 end
