@@ -3,6 +3,6 @@
 Add comment
 <%= render "comments/form" %>
 
-<% @all_comments.where("parent_comment_id IS NULL").each do |comment| %>
+<% @parent_comments.each do |comment| %>
     <%= render partial: "comments/comment", locals: {comment: comment} %>
 <% end %>

@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
-        @all_comments = @post.comments.includes(:author)
+        @parent_comments = @post.comments.where("parent_comment_id IS NULL").includes(:author).sort_by(&:total).reverse
     end
 
     def upvote

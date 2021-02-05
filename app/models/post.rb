@@ -20,4 +20,8 @@ class Post < ApplicationRecord
     def total
         self.votes.sum(:value)
     end
+
+    def sorted_comments
+        self.comments.sort_by(&:total).reverse
+    end
 end
